@@ -1,4 +1,4 @@
-#include <WidgetMetering/widgetmetering.h>
+#include "widgetmetering.h"
 #include "ui_widgetmetering.h"
 
 WidgetMetering::WidgetMetering(QWidget *parent) :

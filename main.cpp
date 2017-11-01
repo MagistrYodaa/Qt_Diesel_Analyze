@@ -24,8 +24,6 @@ int main(int argc, char *argv[])
     delete datadir;
     delete settingsDir;
 
-    QIcon icon("C:\\Users\\Ruslan\\YandexDisk\\Garant_v2\\release\\icon.png");
-    w.setWindowIcon(icon);
     w.show();
     return a.exec();
 }

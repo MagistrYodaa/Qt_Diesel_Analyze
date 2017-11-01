@@ -1,4 +1,4 @@
-#include <WidgetArchive/widgetarchive.h>
+#include "widgetarchive.h"
 #include "ui_widgetarchive.h"
 
 WidgetArchive::WidgetArchive(QWidget *parent) :

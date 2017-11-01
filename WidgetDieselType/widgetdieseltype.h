@@ -8,8 +8,8 @@
 #include <QList>
 #include <QMessageBox>
 #include <algorithm>
-#include <DieselType/dieseltype.h>
-#include <dataio/dataio.h>
+#include "DieselType/dieseltype.h"
+#include "dataio/dataio.h"
 
 
 namespace Ui {

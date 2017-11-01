@@ -3,16 +3,16 @@
 
 #include <QMainWindow>
 #include <QLayout>
-#include <ModBus/include/ModBusUSB.h>
-#include <QCustomPlot/qcustomplot.h>
-#include <WidgetTest/widgettest.h>
-#include <WidgetSettings/widgetsettings.h>
-#include <Settings/settings.h>
-#include <WidgetDieselType/widgetdieseltype.h>
-#include <WidgetVMTSetup/widgetvmtsetup.h>
-#include <WidgetMetering/widgetmetering.h>
-#include <WidgetSelectDiesel/widgetselectdiesel.h>
-#include <WidgetArchive/widgetarchive.h>
+#include "ModBus/include/ModBusUSB.h"
+#include "QCustomPlot/qcustomplot.h"
+#include "WidgetTest/widgettest.h"
+#include "WidgetSettings/widgetsettings.h"
+#include "Settings/settings.h"
+#include "WidgetDieselType/widgetdieseltype.h"
+#include "WidgetVMTSetup/widgetvmtsetup.h"
+#include "WidgetMetering/widgetmetering.h"
+#include "WidgetSelectDiesel/widgetselectdiesel.h"
+#include "WidgetArchive/widgetarchive.h"
 
 namespace Ui {
 class MainWindow;

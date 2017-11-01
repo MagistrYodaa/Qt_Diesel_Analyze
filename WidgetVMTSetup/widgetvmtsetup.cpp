@@ -1,4 +1,4 @@
-#include <WidgetVMTSetup/widgetvmtsetup.h>
+#include "widgetvmtsetup.h"
 #include "ui_widgetvmtsetup.h"
 
 WidgetVMTSetup::WidgetVMTSetup(QWidget *parent) :

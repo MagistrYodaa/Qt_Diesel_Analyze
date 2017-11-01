@@ -6,8 +6,8 @@
 #include <QDir>
 #include <QJsonObject>
 #include <QJsonDocument>
-#include <ModBus/include/ModBusUSB.h>
-#include <DieselType/dieseltype.h>
+#include "ModBus/include/ModBusUSB.h"
+#include "DieselType/dieseltype.h"
 
 void getUsbSettings(TConfigUSBPort &configUSBPort);
 

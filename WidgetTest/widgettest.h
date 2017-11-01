@@ -6,10 +6,10 @@
 #include <QRadioButton>
 #include <QLayout>
 #include <QMap>
-#include <QCustomPlot//qcustomplot.h>
-#include <ModBus/include/ModBusUSB.h>
-#include <dataio/dataio.h>
-#include <Settings/settings.h>
+#include "QCustomPlot//qcustomplot.h"
+#include "ModBus/include/ModBusUSB.h"
+#include "dataio/dataio.h"
+#include "Settings/settings.h"
 
 namespace Ui {
 class WidgetTest;

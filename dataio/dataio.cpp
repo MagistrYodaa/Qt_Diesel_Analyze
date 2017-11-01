@@ -1,4 +1,4 @@
-#include <dataio/dataio.h>
+#include "dataio.h"
 #include <QTextStream>
 
 /*function that reading data from file*/

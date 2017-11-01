@@ -1,4 +1,4 @@
-#include <MainWindow/mainwindow.h>
+#include "mainwindow.h"
 #include "ui_mainwindow.h"
 
 #define USB_DEBUG_LEVEL         0

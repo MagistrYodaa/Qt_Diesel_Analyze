@@ -4,8 +4,8 @@
 #include <QWidget>
 #include <QLayout>
 #include <QRadioButton>
-#include <DieselType/dieseltype.h>
-#include <dataio/dataio.h>
+#include "DieselType/dieseltype.h"
+#include "dataio/dataio.h"
 
 namespace Ui {
 class WidgetMetering;

@@ -5,8 +5,8 @@
 #include <QGridLayout>
 #include <QCloseEvent>
 #include <QPushButton>
-#include <DieselType/dieseltype.h>
-#include <dataio/dataio.h>
+#include "DieselType/dieseltype.h"
+#include "dataio/dataio.h"
 
 namespace Ui {
 class WidgetSelectDiesel;

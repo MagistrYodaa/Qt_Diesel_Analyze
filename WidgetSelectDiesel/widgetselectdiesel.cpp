@@ -1,4 +1,4 @@
-#include <WidgetSelectDiesel/widgetselectdiesel.h>
+#include "widgetselectdiesel.h"
 #include "ui_widgetselectdiesel.h"
 
 WidgetSelectDiesel::WidgetSelectDiesel(QWidget *parent) :

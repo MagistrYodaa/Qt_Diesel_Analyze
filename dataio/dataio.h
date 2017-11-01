@@ -11,9 +11,9 @@
 #include <QPen>
 #include <QMessageBox>
 #include <string>
-#include <Spline/spline.h>
-#include <Settings/settings.h>
-#include <DieselType/dieseltype.h>
+#include "Spline/spline.h"
+#include "Settings/settings.h"
+#include "DieselType/dieseltype.h"
 
 
 typedef struct

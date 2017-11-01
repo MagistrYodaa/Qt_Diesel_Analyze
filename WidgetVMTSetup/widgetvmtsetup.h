@@ -2,8 +2,8 @@
 #define WIDGETVMTSETUP_H
 
 #include <QWidget>
-#include <QCustomPlot/qcustomplot.h>
-#include <dataio/dataio.h>
+#include "QCustomPlot/qcustomplot.h"
+#include "dataio/dataio.h"
 
 namespace Ui {
 class WidgetVMTSetup;

@@ -1,4 +1,4 @@
-#include <WidgetSettings/widgetsettings.h>
+#include "widgetsettings.h"
 #include "ui_widgetsettings.h"
 
 #include <string>

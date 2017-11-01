@@ -1,4 +1,4 @@
-#include <DieselType/dieseltype.h>
+#include "dieseltype.h"
 
 int DieselType::getCylindersCount() const
 {

@@ -2,7 +2,7 @@
 #define __MODBUSUSB_H
 //---------------------------------------------------------------------------
 
-#include <libusb/include/libusb-1.0/libusb.h>
+#include "libusb/include/libusb-1.0/libusb.h"
 #include <stdlib.h>
 #include <stdint.h>
 #include <malloc.h>

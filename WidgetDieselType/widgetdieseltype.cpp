@@ -1,4 +1,4 @@
-#include <WidgetDieselType/widgetdieseltype.h>
+#include "widgetdieseltype.h"
 #include "ui_widgetdieseltype.h"
 
 WidgetDieselType::WidgetDieselType(QWidget *parent) :

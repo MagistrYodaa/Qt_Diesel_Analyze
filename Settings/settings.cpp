@@ -1,4 +1,4 @@
-#include <Settings/settings.h>
+#include "settings.h"
 
 double getTreshold()
 {
