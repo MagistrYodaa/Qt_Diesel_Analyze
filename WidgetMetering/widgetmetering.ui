@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Измерение</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_5">
    <property name="leftMargin">
@@ -64,6 +64,9 @@
            <width>500</width>
            <height>350</height>
           </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(240, 240, 240);</string>
          </property>
         </widget>
        </item>

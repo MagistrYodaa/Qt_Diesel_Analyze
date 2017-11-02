@@ -7,7 +7,6 @@ WidgetSelectDiesel::WidgetSelectDiesel(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    this->setWindowTitle("Выбор дизеля");
     QStringList headers;
     headers << "Марка дизеля" << "Число цил-ров" << "Тактность" << "Конструкция"
             << "Угол заклинки в ряду" << "Порядок работы" << "Диаметр цил-ра" << "Ход поршня"
@@ -24,13 +23,13 @@ WidgetSelectDiesel::WidgetSelectDiesel(QWidget *parent) :
     diesels = getDieselsMap(ok);
     QString workOrder;
     int i = 0;
-    for(auto itv = diesels.begin(); itv != diesels.end(); itv++){
+    for(auto itv = diesels.begin(); itv != diesels.end(); ++itv){
         ui->tableWidget->insertRow(i);
         ui->tableWidget->setItem(i, 0, new QTableWidgetItem(itv->value("dieseltype").toString()));
         ui->tableWidget->setItem(i, 1, new QTableWidgetItem(itv->value("cylinderscount").toString()));
         ui->tableWidget->setItem(i, 2, new QTableWidgetItem(itv->value("tacticity").toString()));
         ui->tableWidget->setItem(i, 4, new QTableWidgetItem(itv->value("anglez").toString()));
-        foreach (QString str, itv->value("workOrder").toStringList()) workOrder.append(str + QString(" "));
+        for (QString str : itv->value("workOrder").toStringList()) workOrder.append(str + QString(" "));
         ui->tableWidget->setItem(i, 5, new QTableWidgetItem(workOrder));
         workOrder.clear();
         ui->tableWidget->setItem(i, 6, new QTableWidgetItem(itv->value("cylinderdiameter").toString()));
@@ -56,7 +55,7 @@ void WidgetSelectDiesel::on_acceptButton_clicked()
 
         QStringList slist;
         slist = input.split(" ");
-        for(int i = 0; i < slist.size() - 1; i++){
+        for(int i = 0; i < slist.size() - 1; ++i){
             workOrder.push_back(slist.at(i).toInt());
         }
 
@@ -99,7 +98,7 @@ void WidgetSelectDiesel::updateTable()
     }
     else{
         QVector <QVariantMap> currentDiesels;
-        for(int i = 0; i < ui->tableWidget->rowCount(); i++){
+        for(int i = 0; i < ui->tableWidget->rowCount(); ++i){
             QVariantMap diesel;
             diesel.insert("dieseltype", ui->tableWidget->item(i, 0)->text());
             diesel.insert("cylinderscount", ui->tableWidget->item(i, 1)->text().toDouble());
@@ -118,13 +117,13 @@ void WidgetSelectDiesel::updateTable()
         }
         QString workOrder;
         int i = 0;
-        for(auto itv = diesels.begin(); itv != diesels.end(); itv++){
+        for(auto itv = diesels.begin(); itv != diesels.end(); ++itv){
             ui->tableWidget->insertRow(i);
             ui->tableWidget->setItem(i, 0, new QTableWidgetItem(itv->value("dieseltype").toString()));
             ui->tableWidget->setItem(i, 1, new QTableWidgetItem(itv->value("cylinderscount").toString()));
             ui->tableWidget->setItem(i, 2, new QTableWidgetItem(itv->value("tacticity").toString()));
             ui->tableWidget->setItem(i, 4, new QTableWidgetItem(itv->value("anglez").toString()));
-            foreach (QString str, itv->value("workOrder").toStringList()) workOrder.append(str + QString(" "));
+            for (QString str : itv->value("workOrder").toStringList()) workOrder.append(str + QString(" "));
             ui->tableWidget->setItem(i, 5, new QTableWidgetItem(workOrder));
             workOrder.clear();
             ui->tableWidget->setItem(i, 6, new QTableWidgetItem(itv->value("cylinderdiameter").toString()));

@@ -89,7 +89,7 @@ void getDefaultDiesel()
     auto listOrder = diesel.value("workOrder").toStringList();
 
     QVector <int> workOrder;
-    foreach (auto item, listOrder) workOrder.push_back(item.toInt());
+    for (auto item : listOrder) workOrder.push_back(item.toInt());
 
     DieselType::getInstance().setAngleWedge(diesel.value("anglez").toInt());
     DieselType::getInstance().setConrodLenght(diesel.value("conrodlenght").toInt());

@@ -1,3 +1,4 @@
+
 #include "widgetmetering.h"
 #include "ui_widgetmetering.h"
 
@@ -7,8 +8,6 @@ WidgetMetering::WidgetMetering(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    this->setWindowTitle("Измерение");
-    ui->plot->setBackground(QColor(240, 240, 240));
     ui->plot->xAxis->setRange(-180, 180);
 
     layoutRadioButtons = new QGridLayout(this);
@@ -67,7 +66,7 @@ void WidgetMetering::on_pushButton_5_clicked()
     QVector <int> usedChannels;
     QString answer;
 
-    foreach (auto item, radioButtons) {
+    for (auto item : radioButtons) {
         if(item->isChecked()){
             auto cylinder = radioButtons.indexOf(item) + 1;
             usedChannels.push_back(cylinder);

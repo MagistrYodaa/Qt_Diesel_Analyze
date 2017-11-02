@@ -37,7 +37,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Дизель-Адмирал</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <property name="minimumSize">
@@ -85,6 +85,9 @@
         <weight>75</weight>
         <bold>true</bold>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox { color: blue; } </string>
       </property>
       <property name="title">
        <string>Тип дизеля</string>
@@ -190,6 +193,9 @@
         <bold>true</bold>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox { color: green; } </string>
+      </property>
       <property name="title">
        <string>Подготовка измерений</string>
       </property>
@@ -286,7 +292,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true"/>
+       <string notr="true">QGroupBox { color: red; } </string>
       </property>
       <property name="title">
        <string>Индицирование</string>

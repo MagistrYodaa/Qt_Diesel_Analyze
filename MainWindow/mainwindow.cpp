@@ -16,11 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     getDefaultDiesel();
 
-    this->setWindowTitle("Дизель-Адмирал");
     ui->labelDieselInfo->setText(DieselType::getInstance().getDieselMark());
-    ui->groupBox->setStyleSheet("QGroupBox { color: blue; } ");
-    ui->groupBox_2->setStyleSheet("QGroupBox { color: green; } ");
-    ui->groupBox_3->setStyleSheet("QGroupBox { color: red; } ");
 
     testWidget = new WidgetTest();
     settingsWidget = new WidgetSettings();

@@ -7,9 +7,6 @@ WidgetTest::WidgetTest(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    this->setWindowTitle("Тест датчиков");
-
-    ui->plot->setBackground(QColor(240, 240, 240));
     ui->plot->xAxis->setRange(0, 500);
     ui->plot->yAxis->setRange(-5, 5);
 

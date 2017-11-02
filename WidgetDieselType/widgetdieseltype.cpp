@@ -7,7 +7,6 @@ WidgetDieselType::WidgetDieselType(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    this->setWindowTitle("Тип дизеля");
     layoutSpinBoxes = new QGridLayout(this);
     ui->groupBoxCylinders->setLayout(layoutSpinBoxes);
     QIntValidator *valid = new QIntValidator(0, 1000, this);
@@ -30,7 +29,7 @@ void WidgetDieselType::clearLayout(QLayout *layout)
 QList<QVariant> WidgetDieselType::getWorkOrder()
 {
     QList<QVariant> workOrder;
-    foreach (auto item, spinBoxes) {
+    for (auto item : spinBoxes) {
         if(std::find(workOrder.begin(), workOrder.end(), item->value()) == workOrder.end()){
             workOrder.push_back(item->value());
         }else{break;}

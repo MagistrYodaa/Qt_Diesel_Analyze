@@ -9,7 +9,6 @@ WidgetSettings::WidgetSettings(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    this->setWindowTitle("Настройки");
     QRegExp pid("[1-9]\\d{0,3}");
     QValidator *validatorPID = new QRegExpValidator(pid, this);
 

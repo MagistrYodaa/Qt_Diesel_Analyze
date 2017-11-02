@@ -7,8 +7,6 @@ WidgetVMTSetup::WidgetVMTSetup(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    this->setWindowTitle("Установка ВМТ");
-    ui->plot->setBackground(QColor(240, 240, 240));
     ui->plot->xAxis->setRange(-180, 180);
     ui->plot->yAxis->setRange(1, 1.5);
     ui->plot->yAxis->setLabel("Кг/см2");
@@ -17,6 +15,7 @@ WidgetVMTSetup::WidgetVMTSetup(QWidget *parent) :
     ui->plot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectAxes | QCP::iSelectLegend | QCP::iSelectPlottables);
 
     //соеднинения для зума 1 - х ось, 2 - у ось
+    //connect(ui->plot->xAxis, &QCPAxis::rangeChanged, ui->plot->xAxis2, &QCPAxis::setRange);
     connect(ui->plot->xAxis, SIGNAL(rangeChanged(QCPRange)), ui->plot->xAxis2, SLOT(setRange(QCPRange)));
     connect(ui->plot->yAxis, SIGNAL(rangeChanged(QCPRange)), ui->plot->yAxis2, SLOT(setRange(QCPRange)));
     //соединение для изменения текста осей

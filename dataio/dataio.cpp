@@ -12,7 +12,7 @@ bool readFromFile(QVector <QVector <double>> &vector_container, QVector <int> us
     if(!QDir(datadir).exists()){
         QDir().mkdir(datadir);
     }
-    for (auto itv = usedChannels.begin(); itv != usedChannels.end(); itv++){
+    for (auto itv = usedChannels.begin(); itv != usedChannels.end(); ++itv){
         adc_data_file = fopen((datadir.toStdString()+ "\\Channel_" + std::to_string(*itv) + ".dat").c_str(), "rb");
         if (adc_data_file == NULL) {
             answer = "<font color='red'>Данные не загружены</font>";
@@ -20,7 +20,7 @@ bool readFromFile(QVector <QVector <double>> &vector_container, QVector <int> us
         }
         fread(&ADC_Data_File, sizeof(ADC_Data_File), 1, adc_data_file);
         fclose(adc_data_file);
-        for(unsigned int j=0;j < ADC_Data_File.adc_count;j++){
+        for (unsigned int j=0;j < ADC_Data_File.adc_count;j++){
             double temp;
             temp = ADC_Data_File.adc_buff[j];
             temp -= 8192;
@@ -42,10 +42,10 @@ bool readFromFile(QMap <QString, QVector<double>> &map_container, QVector <int> 
     //QVector <int> usedChannels;
 
     QString datadir = "Data";
-    if(!QDir(datadir).exists()){
+    if (!QDir(datadir).exists()){
         QDir().mkdir(datadir);
     }
-    for (auto itv = usedChannels.begin(); itv != usedChannels.end(); itv++){
+    for (auto itv = usedChannels.begin(); itv != usedChannels.end(); ++itv){
         adc_data_file = fopen((datadir.toStdString()+ "\\Channel_" + std::to_string(*itv) + ".dat").c_str(), "rb");
         if (adc_data_file == NULL) {
             answer = "<font color='red'>Данные не загружены</font>";
@@ -54,7 +54,7 @@ bool readFromFile(QMap <QString, QVector<double>> &map_container, QVector <int> 
         fread(&ADC_Data_File, sizeof(ADC_Data_File), 1, adc_data_file);
 
         fclose(adc_data_file);
-        for(unsigned int j=0;j < ADC_Data_File.adc_count;j++){
+        for (unsigned int j=0;j < ADC_Data_File.adc_count;j++){
             double temp;
             temp = ADC_Data_File.adc_buff[j];
             temp -= 8192;
@@ -71,7 +71,7 @@ bool readFromFile(QMap <QString, QVector<double>> &map_container, QVector <int> 
     }
     fread(&ADC_Data_File, sizeof(ADC_Data_File), 1, adc_data_file);
     fclose(adc_data_file);
-    for(unsigned int j=0;j < ADC_Data_File.adc_count;j++){
+    for (unsigned int j=0;j < ADC_Data_File.adc_count;j++){
         double temp;
         temp = ADC_Data_File.adc_buff[j];
         temp -= 8192;
@@ -94,7 +94,7 @@ bool readFromADC(QVector <QVector <double>> &vector_container, QVector <int> use
     ADC_Data.adc_count = ConfigUSBPort.adc_count;
     //ADC_Data.adc_freq = ConfigUSBPort.adc_freq;
 
-    if(!OpenPort(&ConfigUSBPort)){
+    if (!OpenPort(&ConfigUSBPort)){
         answer = "<font color='red'>Ошибка при открытии порта</font>";
         return false;
     }
@@ -105,30 +105,30 @@ bool readFromADC(QVector <QVector <double>> &vector_container, QVector <int> use
 
     int32_t temp;
 
-    if( (temp = SetEnableChannelADC(ConfigUSBPort.adc_channels)) < 0 ){
+    if ( (temp = SetEnableChannelADC(ConfigUSBPort.adc_channels)) < 0 ){
         answer = "<font color='red'>Ошибка при установке подключении каналов</font>";
         return false;
     }
 
-    if( (temp = SetFreqSampleADC(ConfigUSBPort.adc_freq)) < 0 ){
+    if ( (temp = SetFreqSampleADC(ConfigUSBPort.adc_freq)) < 0 ){
         answer = "<font color='red'>Ошибка при установке частоты АЦП</font>";
         return false;
     }
 
-    if( (temp = SetCountSampleADC(ConfigUSBPort.adc_count)) < 0 ){
+    if ( (temp = SetCountSampleADC(ConfigUSBPort.adc_count)) < 0 ){
         answer = "<font color='red'>Ошибка при установке количества точек</font>";
         return false;
     }
 
-    if(StartSampleADC(timer_sleep + 2000) < 0){
+    if (StartSampleADC(timer_sleep + 2000) < 0){
         answer = "<font color='red'>Ошибка при установке времени работы АЦП</font>";
         return false;
     }
     QVector <double> vectorOfData;
 
-    for (auto itv = usedChannels.begin(); itv != usedChannels.end(); itv++){
+    for (auto itv = usedChannels.begin(); itv != usedChannels.end(); ++itv){
         temp = ReadDataADC(ConfigUSBPort.adc_count, *itv, ADC_Data.adc_buff);
-        for(unsigned int j=0;j < ADC_Data.adc_count;j++){
+        for (unsigned int j=0;j < ADC_Data.adc_count;j++){
             double temp;
             temp = ADC_Data.adc_buff[j];
             temp -= 8192;
@@ -156,7 +156,7 @@ bool readFromADC(QMap <QString, QVector<double>> &map_container, QVector <int> u
     ADC_Data.adc_count = ConfigUSBPort.adc_count;
     ADC_Data.adc_freq = ConfigUSBPort.adc_freq;
 
-    if(!OpenPort(&ConfigUSBPort)){
+    if (!OpenPort(&ConfigUSBPort)){
         answer = "<font color='red'>Ошибка при открытии порта</font>";
         return false;
     }
@@ -167,30 +167,30 @@ bool readFromADC(QMap <QString, QVector<double>> &map_container, QVector <int> u
 
     int32_t temp;
 
-    if( (temp = SetEnableChannelADC(ConfigUSBPort.adc_channels)) < 0 ){
+    if ( (temp = SetEnableChannelADC(ConfigUSBPort.adc_channels)) < 0 ){
         answer = "<font color='red'>Ошибка при установке подключении каналов</font>";
         return false;
     }
 
-    if( (temp = SetFreqSampleADC(ConfigUSBPort.adc_freq)) < 0 ){
+    if ( (temp = SetFreqSampleADC(ConfigUSBPort.adc_freq)) < 0 ){
         answer = "<font color='red'>Ошибка при установке частоты АЦП</font>";
         return false;
     }
 
-    if( (temp = SetCountSampleADC(ConfigUSBPort.adc_count)) < 0 ){
+    if ( (temp = SetCountSampleADC(ConfigUSBPort.adc_count)) < 0 ){
         answer = "<font color='red'>Ошибка при установке количества точек</font>";
         return false;
     }
 
-    if(StartSampleADC(timer_sleep + 2000) < 0){
+    if (StartSampleADC(timer_sleep + 2000) < 0){
         answer = "<font color='red'>Ошибка при установке времени работы АЦП</font>";
         return false;
     }
     QVector <double> vectorOfData;
 
-    for (auto itv = usedChannels.begin(); itv != usedChannels.end(); itv++){
+    for (auto itv = usedChannels.begin(); itv != usedChannels.end(); ++itv){
         temp = ReadDataADC(ConfigUSBPort.adc_count, *itv, ADC_Data.adc_buff);
-        for(unsigned int j=0;j < ADC_Data.adc_count;j++){
+        for (unsigned int j=0;j < ADC_Data.adc_count;j++){
             double temp;
             temp = ADC_Data.adc_buff[j];
             temp -= 8192;
@@ -207,7 +207,7 @@ bool readFromADC(QMap <QString, QVector<double>> &map_container, QVector <int> u
     }
     //ДУП канал считывается отдельно (номер канала берется из настроек программы)
     temp = ReadDataADC(ConfigUSBPort.adc_count, getDUPChannelSettings() - 1, ADC_Data.adc_buff);
-    for(unsigned int j=0;j < ADC_Data.adc_count;j++){
+    for (unsigned int j=0;j < ADC_Data.adc_count;j++){
         double temp;
         temp = ADC_Data.adc_buff[j];
         temp -= 8192;
@@ -230,12 +230,12 @@ void getIndicesVector(QVector <double> &dataVector, QVector <int> &indicesVector
 {
     bool indexGeted = false;
     double porogValue = getTreshold();
-    for (auto itv = dataVector.begin(); itv != dataVector.end(); itv++){
-        if(*itv > porogValue && !indexGeted){
+    for (auto itv = dataVector.begin(); itv != dataVector.end(); ++itv){
+        if (*itv > porogValue && !indexGeted){
             indicesVector.push_back(itv - dataVector.begin());
             indexGeted = true;
         }
-        if(*itv < 0 && indexGeted){
+        if (*itv < 0 && indexGeted){
             indexGeted = false;
         }
     }
@@ -252,18 +252,18 @@ int getVMTAngle(QVector <int> &indicesVector, QVector <double> &dataVector)
     QVector<double> fiVmtVector;
     QVector<int>::const_iterator itv;
 
-    for(itv = indicesVector.begin() + 1*tacticity;itv < std::prev(indicesVector.end(), 1*tacticity);itv += tacticity){
+    for (itv = indicesVector.begin() + 1*tacticity;itv < std::prev(indicesVector.end(), 1*tacticity);itv += tacticity){
         double max = dataVector[0];
         int index;           /*if tacticity 1 iterator will upgrade by 1*/
         QVector <int> indexes;
 
-        for(int i = *itv;i <= *(itv+tacticity);i++){
-            if(dataVector[i] > max){
+        for (int i = *itv;i <= *(itv+tacticity);++i){
+            if (dataVector[i] > max){
                 max = dataVector[i];               
             }
         }
-        for(int i = *itv;i <= *(itv+tacticity);i++){
-            if(dataVector[i] == max){
+        for (int i = *itv;i <= *(itv+tacticity);++i){
+            if (dataVector[i] == max){
                 indexes.push_back(i);
             }
         }
@@ -282,8 +282,8 @@ int getAverageIndex(QVector <int> indexes)
     int averageIndex = int(std::accumulate(indexes.begin(), indexes.end(), 0)/indexes.size());
     int indexDiff = averageIndex - *(indexes.begin());
     int index = *(indexes.begin());
-    for(auto itv = indexes.begin(); itv != indexes.end(); itv++){
-        if(abs(averageIndex - *itv) < indexDiff){
+    for (auto itv = indexes.begin(); itv != indexes.end(); ++itv){
+        if (abs(averageIndex - *itv) < indexDiff){
             indexDiff = abs(averageIndex - *itv);
             index = *itv;
         }
@@ -297,11 +297,11 @@ void getVMTDataVector(int VMT, QVector <int> &indicesVector, QVector <double> &d
     int tacticity = 1;
     QVector <QVector <double>> vector;
 
-    for(auto itv = std::next(indicesVector.begin(), 1*tacticity); itv < std::prev(indicesVector.end(), 1*tacticity); itv+=1*tacticity){
+    for (auto itv = std::next(indicesVector.begin(), 1*tacticity); itv < std::prev(indicesVector.end(), 1*tacticity); itv+=1*tacticity){
         auto angleSegment = (*(std::next(itv, tacticity)) - *itv)/360.0;
         int delta = angleSegment*180;
 
-        for(int i = *itv + int(angleSegment*VMT) - delta; i <= (*itv + int(angleSegment*VMT) + delta);i++){
+        for (int i = *itv + int(angleSegment*VMT) - delta; i <= (*itv + int(angleSegment*VMT) + delta);++i){
             vmtDataVector.push_back(dataVector.at(i));
         }
         getAproxVMTVector(vmtDataVector);
@@ -314,9 +314,9 @@ void getVMTDataVector(int VMT, QVector <int> &indicesVector, QVector <double> &d
 /*function that counting average vector from few vectors*/
 void getOneVectorFromSeveral(QVector<QVector<double>> &bigVector, QVector<double> &newVector)
 {
-    for(int i = 0; i < bigVector.begin()->size();i++){
+    for (int i = 0; i < bigVector.begin()->size();++i){
         double summ = 0;
-        for(auto itv = bigVector.begin(); itv != bigVector.end(); itv++){
+        for (auto itv = bigVector.begin(); itv != bigVector.end(); ++itv){
             summ += (*itv).at(i);
         }
         newVector.push_back((summ/bigVector.size()));
@@ -332,16 +332,16 @@ void getAproxVMTVector(QVector <double> &oldVector, double angleSegementNew)
     tk::spline s;
     double angleSegmentOfBigVector = 360.0/oldVector.size();
 
-    for(double i = 0; i <= 360; i += angleSegmentOfBigVector){
+    for (double i = 0; i <= 360; i += angleSegmentOfBigVector){
 
-        if(vect.size() < oldVector.size()){
+        if (vect.size() < oldVector.size()){
             vect.push_back(i);
         }
     }
     /*устанавливаем данные, для получения новых после интерполяции*/
     s.set_points(vect.toStdVector(),oldVector.toStdVector());
 
-    for(double i = 0; i <= 360; i += angleSegementNew){
+    for (double i = 0; i <= 360; i += angleSegementNew){
         newVector.push_back(s(i));
     }
 
@@ -355,9 +355,9 @@ void getAproxVMTVector(QVector <double> &oldVector, double angleSegementNew)
 void shiftCorrecting(QVector <double> &oldVector)
 {
     int distance = std::distance(oldVector.begin(), std::max_element(oldVector.begin(), oldVector.end())) - 360;
-    if(distance < 0){
+    if (distance < 0){
         int distanc = abs(distance);
-        for(auto itv = oldVector.end() - 1; distanc > 0;){
+        for (auto itv = oldVector.end() - 1; distanc > 0;){
             oldVector.push_front(*itv);
             distanc--;
         }
@@ -365,7 +365,7 @@ void shiftCorrecting(QVector <double> &oldVector)
     }
     else if (distance > 0) {
         int distanc = distance;
-        for(auto itv = oldVector.begin(); distanc > 0; itv++){
+        for (auto itv = oldVector.begin(); distanc > 0; ++itv){
             oldVector.push_back(*itv);
             distanc--;
         }
@@ -376,7 +376,7 @@ void shiftCorrecting(QVector <double> &oldVector)
 bool addNewDiesel(const QVariantMap &newDiesel)
 {
     QString dieselsDir = "DieselsTypes";
-    if(!QDir(dieselsDir).exists()){
+    if (!QDir(dieselsDir).exists()){
         QDir().mkdir(dieselsDir);
     }
     QString dieselFile = newDiesel.value("dieseltype").toString();
@@ -384,7 +384,7 @@ bool addNewDiesel(const QVariantMap &newDiesel)
     QJsonObject object = QJsonObject::fromVariantMap(newDiesel);
 
     QFile file(dieselsDir + "/" + dieselFile + QString(".json"));
-    if(!file.open(QIODevice::WriteOnly)){
+    if (!file.open(QIODevice::WriteOnly)){
         return false;
     }
     QJsonDocument document(object);
@@ -406,9 +406,9 @@ QVector <QVariantMap> getDieselsMap(bool &ok)
     QVector <QVariantMap> diesels;
     ok = true;
 
-    foreach (auto item, list) {
+    for (auto item : list) {
        QFile file(dieselsDir + "/" + item);
-       if(!file.open(QIODevice::ReadOnly)){
+       if (!file.open(QIODevice::ReadOnly)){
            ok = false;
        }
        QByteArray data = file.readAll();
@@ -430,7 +430,7 @@ QVector<QPen> getColors()
     list << "yellow" << "darkYellow" << "darkCyan" << "darkBlue" << "darkGray" << "brown" << "orange" << "darkOrange";
     list << "deeppinpl" << "deepskyblue" << "black";
 
-    for(int i = 0; i < list.size(); i++){
+    for (int i = 0; i < list.size(); ++i){
         QPen graphPen;
         graphPen.setColor(list[i]);
         graphPenVector.push_back(graphPen);
@@ -444,12 +444,12 @@ void getChannelsDataMap(QMap<QString, QVector<double>> &mapContainer, int VMT, Q
 
     QVector <int> workOrder = DieselType::getInstance().getWorkOrder();
     int order = workOrder.indexOf(channel) + 1;
-    if(order == 1){
+    if (order == 1){
         QVector <double> vmtDataVector;
         QString key = QString::fromUtf8(("Channel_" + std::to_string(order)).c_str());
         getVMTDataVector(VMT, indicesVector, mapContainer[key], vmtDataVector);
         mapContainer.insert(key, vmtDataVector);
-    }else{
+    } else {
         QVector <double> vmtDataVector;
         QString key = QString::fromUtf8(("Channel_" + std::to_string(order)).c_str());
         VMT += DieselType::getInstance().getAngleWedge() * (order - 1);
@@ -462,7 +462,7 @@ void getChannelsDataMap(QMap<QString, QVector<double>> &mapContainer, int VMT, Q
 void slimimngIndicesVector(QVector <int> &indicesVector, int &enterAngle)
 {
     int count = enterAngle/360; // на самом деле 360*тактность
-    for(int i = 0; i < count; i++){
+    for (int i = 0; i < count; ++i){
         indicesVector.pop_front();
     }
     enterAngle = enterAngle%360;
@@ -477,7 +477,7 @@ void deleteDiesel(const QString &dieselname)
 QVector <double> getAnglesVector()
 {
     QVector <double> anglesVector;
-    for(double i = -180; i <= 180; i += 0.5){
+    for (double i = -180; i <= 180; i += 0.5){
         anglesVector.push_back(i);
     }
     return anglesVector;
@@ -490,7 +490,7 @@ bool saveVMT(int VMT)
     QJsonObject object = QJsonObject::fromVariantMap(vmt);
 
     QFile file("VMT" + QString(".json"));
-    if(!file.open(QIODevice::WriteOnly)){
+    if (!file.open(QIODevice::WriteOnly)){
         return false;
     }
     QJsonDocument document(object);
@@ -501,7 +501,7 @@ bool saveVMT(int VMT)
 int getVMTAngle()
 {
     QFile file("VMT.json");
-    if(!file.open(QIODevice::ReadOnly)){
+    if (!file.open(QIODevice::ReadOnly)){
     }
     QByteArray data = file.readAll();
     QJsonDocument doc(QJsonDocument::fromJson(data));
