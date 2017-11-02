@@ -36,12 +36,12 @@ void WidgetMetering::showRadioButtons(int count)
 {
     radioButtons.reserve(count);
     int column = 0;
-    for(int i = 0; i < count; i++){
+    for (int i = 0; i < count; i++){
         radioButtons.push_back(new QRadioButton(this));
         radioButtons[i]->setMaximumSize(80, 25);
         radioButtons[i]->setMinimumSize(70, 25);
         radioButtons[i]->setText(QString::number(i + 1) + " цилиндр");
-        if(layoutRadioButtons->count() % 5 == 0){
+        if (layoutRadioButtons->count() % 5 == 0){
             column += 1;
         }
         layoutRadioButtons->addWidget(radioButtons[i], i%5, column);
@@ -52,9 +52,9 @@ void WidgetMetering::showRadioButtons(int count)
 void WidgetMetering::clearLayout(QLayout *layout)
 {
     QLayoutItem *child;
-    while((child = layout->takeAt(0)) != 0){
-        if(child->layout() != 0) clearLayout(child->layout());
-        else if(child->widget() != 0) delete child->widget();
+    while ((child = layout->takeAt(0)) != 0){
+        if (child->layout() != 0) clearLayout(child->layout());
+        else if (child->widget() != 0) delete child->widget();
     }
     radioButtons.clear();
 }
@@ -67,7 +67,7 @@ void WidgetMetering::on_pushButton_5_clicked()
     QString answer;
 
     for (auto item : radioButtons) {
-        if(item->isChecked()){
+        if (item->isChecked()){
             auto cylinder = radioButtons.indexOf(item) + 1;
             usedChannels.push_back(cylinder);
         }
@@ -78,7 +78,7 @@ void WidgetMetering::on_pushButton_5_clicked()
 
     QVector <int> indicesVector;
     getIndicesVector(mapContainer["Channel_DUP"], indicesVector);
-    if(!indicesVector.empty()){
+    if (!indicesVector.empty()){
         getChannelsDataMap(mapContainer, getVMTAngle(), indicesVector, usedChannels.first());
     }
 

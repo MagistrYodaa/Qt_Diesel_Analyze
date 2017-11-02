@@ -32,28 +32,28 @@ void WidgetTest::on_meteringButton_clicked()
     QString answer;
 
     usedChannels.push_back(1);  // просто так выбрал 1 канал НО НАДО ЧТОБЫ В НАСТРОЙКАХ СТОЯЛО КАКОЙ КАНАЛ МЫ ПРОВЕРЯЕМ В ЭТОМ РЕЖИМЕ
-    if(readFromADC(mapContainer, usedChannels, answer)){
+    if (readFromADC(mapContainer, usedChannels, answer)){
 
         ui->plot->addGraph();
 
-        if(ui->radioButtonDDG->isChecked()){
+        if (ui->radioButtonDDG->isChecked()){
             ui->plot->graph()->setData(countVector, mapContainer["Channel_1"]);
 
-        }else{
+        } else {
             ui->plot->graph()->setData(countVector, mapContainer["Channel_DUP"]);
         }
         ui->plot->replot();
 
         mapContainer.clear();
         usedChannels.clear();
-    }else{
+    } else {
         ui->labelMain->setText(answer);
     }
 }
 
 void WidgetTest::on_zoomOut_clicked()
 {
-    if(ui->plot->xAxis->range().upper < 100000){
+    if (ui->plot->xAxis->range().upper < 100000){
         auto newRange = (ui->plot->xAxis->range().upper)*2;
         ui->plot->xAxis->setRangeUpper(newRange);
         ui->plot->replot();
@@ -62,7 +62,7 @@ void WidgetTest::on_zoomOut_clicked()
 
 void WidgetTest::on_zoomIn_clicked()
 {
-    if(ui->plot->xAxis->range().upper > 500){
+    if (ui->plot->xAxis->range().upper > 500){
             auto newRange = (ui->plot->xAxis->range().upper)*0.5;
             ui->plot->xAxis->setRangeUpper(newRange);
             ui->plot->replot();

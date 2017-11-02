@@ -47,11 +47,11 @@ void WidgetVMTSetup::on_meteringButton_clicked()
 
     usedChannels.push_back(1);
 
-    if(readFromFile(mapContainer, usedChannels, answer)){
+    if (readFromFile(mapContainer, usedChannels, answer)){
 
         getIndicesVector(mapContainer["Channel_DUP"], indicesVector);
 
-        if(!indicesVector.empty()){
+        if (!indicesVector.empty()){
             auto VMT = getVMTAngle(indicesVector, mapContainer["Channel_1"]);
             ui->labelMain->setText(answer + "  " + QString::number(VMT));
             getVMTDataVector(VMT, indicesVector, mapContainer["Channel_1"], vmtDataVector);
@@ -66,7 +66,7 @@ void WidgetVMTSetup::on_meteringButton_clicked()
         mapContainer.clear();
         usedChannels.clear();
         vmtDataVector.clear();
-    }else{
+    } else {
         ui->labelMain->setText(answer);
     }
 

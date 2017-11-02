@@ -3,7 +3,7 @@
 double getTreshold()
 {
     QString settingsDIR = "Settings";
-    if(!QDir(settingsDIR).exists()){
+    if (!QDir(settingsDIR).exists()){
         QDir().mkdir(settingsDIR);
     }
     QSettings settings((settingsDIR.toStdString() + "\\settings.ini").c_str(), QSettings::IniFormat);
@@ -13,7 +13,7 @@ double getTreshold()
 void getUsbSettings(TConfigUSBPort &configUSBPort)
 {
     QString settingsDir = "Settings";
-    if(!QDir(settingsDir).exists()){
+    if (!QDir(settingsDir).exists()){
         QDir().mkdir(settingsDir);
     }
     QSettings settings((settingsDir.toStdString() + "\\settings.ini").c_str(), QSettings::IniFormat);
@@ -27,7 +27,7 @@ void getUsbSettings(TConfigUSBPort &configUSBPort)
 void getCountVector(QVector <double> &countVector)
 {
     QString datadir = "Settings";
-    if(!QDir(datadir).exists()){
+    if (!QDir(datadir).exists()){
         QDir().mkdir(datadir);
     }
     QSettings settings((datadir.toStdString() + "\\settings.ini").c_str(), QSettings::IniFormat);
@@ -40,7 +40,7 @@ void getCountVector(QVector <double> &countVector)
 int getDUPChannelSettings()
 {
     QString settingsDIR = "Settings";
-    if(!QDir(settingsDIR).exists()){
+    if (!QDir(settingsDIR).exists()){
         QDir().mkdir(settingsDIR);
     }
     QSettings settings((settingsDIR.toStdString() + "\\settings.ini").c_str(), QSettings::IniFormat);
@@ -50,7 +50,7 @@ int getDUPChannelSettings()
 QString getDUPChannel()
 {
     QString settingsDIR = "Settings";
-    if(!QDir(settingsDIR).exists()){
+    if (!QDir(settingsDIR).exists()){
         QDir().mkdir(settingsDIR);
     }
     QSettings settings((settingsDIR.toStdString() + "\\settings.ini").c_str(), QSettings::IniFormat);
@@ -71,14 +71,14 @@ void saveDefaultDiesel()
 void getDefaultDiesel()
 {
     QString datadir = "Settings";
-    if(!QDir(datadir).exists()){
+    if (!QDir(datadir).exists()){
         QDir().mkdir(datadir);
     }
     QSettings settings((datadir.toStdString() + "\\settings.ini").c_str(), QSettings::IniFormat);
     QString dieselsDir = "DieselsTypes";
 
     QFile file(dieselsDir + "\\" + settings.value("default_diesel_type").toString() + ".json");
-    if(!file.open(QIODevice::ReadOnly)){
+    if (!file.open(QIODevice::ReadOnly)){
         return;
     }
 

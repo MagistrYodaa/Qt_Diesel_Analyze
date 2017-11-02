@@ -31,7 +31,7 @@ WidgetSettings::WidgetSettings(QWidget *parent) :
 void WidgetSettings::on_pushButtonAccept_clicked()
 {
     QString datadir = "Settings";
-    if(!QDir(datadir).exists()){
+    if (!QDir(datadir).exists()){
         QDir().mkdir(datadir);
     }
     QSettings settings((datadir.toStdString() + "\\settings.ini").c_str(), QSettings::IniFormat);
