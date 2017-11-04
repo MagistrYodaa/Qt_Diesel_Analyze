@@ -67,10 +67,9 @@ void WidgetSelectDiesel::on_acceptButton_clicked()
         DieselType::getInstance().setConrodLenght(ui->tableWidget->item(index, 8)->text().toDouble());
         DieselType::getInstance().setWorkOrder(workOrder);
 
-        saveDefaultDiesel();
+        DieselType::getInstance().saveDefaultDiesel();
 
         emit activeDiesel(ui->tableWidget->item(index, 0)->text());
-        //emit dieseliIsSelected(DieselType::getInstance().getCylindersCount());
 
         this->close();
     }

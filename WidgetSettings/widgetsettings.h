@@ -27,7 +27,6 @@ private slots:
     void closeEvent(QCloseEvent *event);
 private:
     Ui::WidgetSettings *ui;
-    TConfigUSBPort *ConfigUSBPort;
 };
 
 #endif // WIDGETSETTINGS_H

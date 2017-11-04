@@ -26,14 +26,14 @@ public:
 signals:
     void updateTable();
 private slots:
-    void on_buttonMetering2_clicked();
-    void on_buttonSettings_clicked();
-    void on_buttonDiesel1_clicked();
-    void on_buttonMetering1_clicked();
-    void on_buttonInd1_clicked();
-    void on_buttonDiesel2_clicked();
     void setActiveDiesel(QString string);
-    void on_buttonInd2_clicked();
+    void on_buttonDieselType_clicked();
+    void on_buttonSelectDiesel_clicked();
+    void on_buttonVMTSetup_clicked();
+    void on_buttonTest_clicked();
+    void on_buttonMetering_clicked();
+    void on_buttonArchive_clicked();
+    void on_buttonSettings_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -1,5 +1,5 @@
 #include "dataio.h"
-#include <QTextStream>
+#include <settingsclass.h>
 
 /*function that reading data from file*/
 bool readFromFile(QVector <QVector <double>> &vector_container, QVector <int> usedChannels, QString &answer)

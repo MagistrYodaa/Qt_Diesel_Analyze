@@ -1,8 +1,6 @@
 #include "widgetsettings.h"
 #include "ui_widgetsettings.h"
 
-#include <string>
-
 WidgetSettings::WidgetSettings(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::WidgetSettings)
@@ -14,6 +12,7 @@ WidgetSettings::WidgetSettings(QWidget *parent) :
 
     ui->lineEditPID->setValidator(validatorPID);
     ui->lineEditVID->setValidator(validatorPID);
+
     ui->spinBoxCount->setMaximum(MAX_COUNT_ADC);
 
     TConfigUSBPort ConfigUSBPort;

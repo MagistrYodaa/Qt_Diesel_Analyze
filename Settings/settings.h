@@ -13,10 +13,6 @@ void getUsbSettings(TConfigUSBPort &configUSBPort);
 
 void getCountVector(QVector <double> &countVector);
 
-void saveDefaultDiesel();
-
-void getDefaultDiesel();
-
 int getDUPChannelSettings();
 
 double getTreshold();

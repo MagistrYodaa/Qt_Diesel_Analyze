@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    getDefaultDiesel();
+    DieselType::getInstance().loadDefaultDiesel();
 
     ui->labelDieselInfo->setText(DieselType::getInstance().getDieselMark());
 
@@ -28,31 +28,45 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(selectDieselWidget, &WidgetSelectDiesel::activeDiesel, this, &MainWindow::setActiveDiesel);
     connect(this, &MainWindow::updateTable, selectDieselWidget, &WidgetSelectDiesel::updateTable);
+
+
+    //connect(ui->buttonDieselType, &QPushButton::clicked, dieselTypeWidget, &WidgetDieselType::show);
+    //connect(ui->buttonSelectDiesel, &QPushButton::clicked, selectDieselWidget, &WidgetSelectDiesel::show);
+    //connect(ui->buttonVMTSetup, &QPushButton::clicked, VMTSetupWidget, &WidgetVMTSetup::show);
+    //connect(ui->buttonTest, &QPushButton::clicked, testWidget, &WidgetTest::show);
+    //connect(ui->buttonMetering, &QPushButton::clicked, meteringWidget, &WidgetMetering::show);
+    //connect(ui->buttonArchive, &QPushButton::clicked, archiveWidget, &WidgetArchive::show);
     //connect(selectDieselWidget, &WidgetSelectDiesel::dieseliIsSelected, meteringWidget, &WidgetMetering::showRadioButtons);
 
 }
 
-void MainWindow::on_buttonMetering2_clicked()
+void MainWindow::setActiveDiesel(QString string)
 {
-    testWidget->show();
+    ui->labelDieselInfo->setText(string);
 }
 
-void MainWindow::on_buttonSettings_clicked()
-{
-    settingsWidget->show();
-}
-
-void MainWindow::on_buttonDiesel1_clicked()
+void MainWindow::on_buttonDieselType_clicked()
 {
     dieselTypeWidget->show();
 }
 
-void MainWindow::on_buttonMetering1_clicked()
+void MainWindow::on_buttonSelectDiesel_clicked()
+{
+    emit updateTable();
+    selectDieselWidget->show();
+}
+
+void MainWindow::on_buttonVMTSetup_clicked()
 {
     VMTSetupWidget->show();
 }
 
-void MainWindow::on_buttonInd1_clicked()
+void MainWindow::on_buttonTest_clicked()
+{
+    testWidget->show();
+}
+
+void MainWindow::on_buttonMetering_clicked()
 {
     if(DieselType::getInstance().getWorkOrder().empty()){
         QMessageBox::information(this, "Дизель-Адмирал", "Дизель не выбран");
@@ -62,24 +76,24 @@ void MainWindow::on_buttonInd1_clicked()
     }
 }
 
-void MainWindow::on_buttonDiesel2_clicked()
-{
-    emit updateTable();
-    selectDieselWidget->show();
-}
-
-void MainWindow::setActiveDiesel(QString string)
-{
-    ui->labelDieselInfo->setText(string);
-}
-
-void MainWindow::on_buttonInd2_clicked()
+void MainWindow::on_buttonArchive_clicked()
 {
     archiveWidget->show();
 }
 
-MainWindow::~MainWindow()
+void MainWindow::on_buttonSettings_clicked()
 {
-    delete ui;
+    settingsWidget->show();
 }
 
+MainWindow::~MainWindow()
+{
+    delete testWidget;
+    delete settingsWidget;
+    delete dieselTypeWidget;
+    delete VMTSetupWidget;
+    delete meteringWidget;
+    delete selectDieselWidget;
+    delete archiveWidget;
+    delete ui;
+}

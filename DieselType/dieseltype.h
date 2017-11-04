@@ -3,20 +3,25 @@
 
 #include <QString>
 #include <QVector>
+#include <QSettings>
+#include <QFile>
+#include <QDir>
+#include <QJsonDocument>
+#include <QJsonObject>
 
 class DieselType
 {
 private:
-    int angleWedge;
-    QString dieselMark;
-    int cylindersCount;
-    int tacticity;
+    int angleWedge_;
+    QString dieselMark_;
+    int cylindersCount_;
+    int tacticity_;
 
-    QString counstuctionType;
-    QVector <int> workOrder;
-    double cylindersDiameter;
-    double pistonStroke;
-    double conrodLenght;
+    QString counstuctionType_;
+    QVector <int> workOrder_;
+    double cylindersDiameter_;
+    double pistonStroke_;
+    double conrodLenght_;
 
     DieselType() {}
     DieselType(const DieselType&);
@@ -41,11 +46,13 @@ public:
     void setConrodLenght(double value);
     QVector<int> getWorkOrder() const;
     void setWorkOrder(const QVector<int> &value);
+    void saveDefaultDiesel();
+    bool loadDefaultDiesel();
 
     static DieselType& getInstance() {
-            static DieselType instance;
-            return instance;
-        }    
+        static DieselType instance;
+        return instance;
+    }
 };
 
 #endif // DIESELTYPE_H

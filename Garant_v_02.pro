@@ -44,9 +44,8 @@ SOURCES += main.cpp \
     Settings/settings.cpp \
     dataio/dataio.cpp \
     ModBus/include/ModBusUSB.cpp \
-    DieselType/dieseltype.cpp
-
-
+    DieselType/dieseltype.cpp \
+    Settings/settingsclass.cpp
 
 
 HEADERS  += WidgetArchive/widgetarchive.h \
@@ -63,7 +62,8 @@ HEADERS  += WidgetArchive/widgetarchive.h \
     DieselType/dieseltype.h \
     libusb/include/libusb-1.0/libusb.h \
     Spline/spline.h \
-    ModBus/include/ModBusUSB.h
+    ModBus/include/ModBusUSB.h \
+    Settings/settingsclass.h
 
 FORMS    += WidgetVMTSetup/widgetvmtsetup.ui \
     WidgetTest/widgettest.ui \
