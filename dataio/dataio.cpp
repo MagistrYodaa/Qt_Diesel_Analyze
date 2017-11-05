@@ -1,5 +1,4 @@
 #include "dataio.h"
-#include <settingsclass.h>
 
 /*function that reading data from file*/
 bool readFromFile(QVector <QVector <double>> &vector_container, QVector <int> usedChannels, QString &answer)
@@ -39,7 +38,6 @@ bool readFromFile(QMap <QString, QVector<double>> &map_container, QVector <int> 
     TADC_Data_file ADC_Data_File;
     FILE *adc_data_file;
     QVector <double> vectorOfData;
-    //QVector <int> usedChannels;
 
     QString datadir = "Data";
     if (!QDir(datadir).exists()){
@@ -89,7 +87,9 @@ bool readFromADC(QVector <QVector <double>> &vector_container, QVector <int> use
 {
     TConfigUSBPort ConfigUSBPort;
     TADC_Data ADC_Data;
-    getUsbSettings(ConfigUSBPort);
+    Settings settings;
+    settings.getUsbSettings(ConfigUSBPort);
+    //getUsbSettings(ConfigUSBPort);
 
     ADC_Data.adc_count = ConfigUSBPort.adc_count;
     //ADC_Data.adc_freq = ConfigUSBPort.adc_freq;
@@ -148,8 +148,9 @@ bool readFromADC(QMap <QString, QVector<double>> &map_container, QVector <int> u
     TConfigUSBPort ConfigUSBPort;
     TADC_Data ADC_Data;
     FILE *adc_data_file;
+    Settings settings;
+    settings.getUsbSettings(ConfigUSBPort);
 
-    getUsbSettings(ConfigUSBPort);
     // уменьшаем значения на -1, потому что у ReadADC() 0 - это 1 канал и тп и тд.
     std::for_each(usedChannels.begin(), usedChannels.end(), [](int &a){a--;});
 
@@ -206,7 +207,7 @@ bool readFromADC(QMap <QString, QVector<double>> &map_container, QVector <int> u
         vectorOfData.clear();
     }
     //ДУП канал считывается отдельно (номер канала берется из настроек программы)
-    temp = ReadDataADC(ConfigUSBPort.adc_count, getDUPChannelSettings() - 1, ADC_Data.adc_buff);
+    temp = ReadDataADC(ConfigUSBPort.adc_count, settings.getDupChannel() - 1, ADC_Data.adc_buff);
     for (unsigned int j=0;j < ADC_Data.adc_count;j++){
         double temp;
         temp = ADC_Data.adc_buff[j];
@@ -228,8 +229,10 @@ bool readFromADC(QMap <QString, QVector<double>> &map_container, QVector <int> u
 /* function that getting indexes of values where dup is works*/
 void getIndicesVector(QVector <double> &dataVector, QVector <int> &indicesVector)
 {
+    Settings settings;
     bool indexGeted = false;
-    double porogValue = getTreshold();
+    double porogValue = settings.getTreshold();
+
     for (auto itv = dataVector.begin(); itv != dataVector.end(); ++itv){
         if (*itv > porogValue && !indexGeted){
             indicesVector.push_back(itv - dataVector.begin());
@@ -505,8 +508,7 @@ int getVMTAngle()
     }
     QByteArray data = file.readAll();
     QJsonDocument doc(QJsonDocument::fromJson(data));
-    QJsonObject obj(doc.object());
-    auto vmtMap = obj.toVariantMap();
+    auto vmtMap = doc.object().toVariantMap();
     file.close();
     return vmtMap.value("VMT").toInt();
 }

@@ -18,7 +18,7 @@ Settings::Settings()
 
 }
 
-void Settings::getCountVector(QVector<int> &countVector)
+void Settings::getCountVector(QVector<double> &countVector)
 {
     countVector.reserve(count_);
     for (int i = 0; i < count_; i++){
@@ -31,7 +31,7 @@ QString Settings::getDUPChannelString()
     return QString("Channel_%1").arg(dupChannel_);
 }
 
-double Settings::treshold() const
+double Settings::getTreshold() const
 {
     return treshold_;
 }
@@ -43,7 +43,7 @@ void Settings::setTreshold(double treshold)
     sync();
 }
 
-int Settings::dupChannel() const
+int Settings::getDupChannel() const
 {
     return dupChannel_;
 }
@@ -55,7 +55,7 @@ void Settings::setDupChannel(int dupChannel)
     sync();
 }
 
-int Settings::PID() const
+int Settings::getPID() const
 {
     return PID_;
 }
@@ -67,7 +67,7 @@ void Settings::setPID(int PID)
     sync();
 }
 
-int Settings::VID() const
+int Settings::getVID() const
 {
     return VID_;
 }
@@ -79,7 +79,7 @@ void Settings::setVID(int VID)
     sync();
 }
 
-int Settings::timeOut() const
+int Settings::getTimeOut() const
 {
     return timeOut_;
 }
@@ -91,7 +91,7 @@ void Settings::setTimeOut(int timeOut)
     sync();
 }
 
-int Settings::freq() const
+int Settings::getFreq() const
 {
     return freq_;
 }
@@ -103,7 +103,7 @@ void Settings::setFreq(int freq)
     sync();
 }
 
-int Settings::count() const
+int Settings::getCount() const
 {
     return count_;
 }

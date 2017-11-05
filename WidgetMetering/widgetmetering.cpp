@@ -9,6 +9,7 @@ WidgetMetering::WidgetMetering(QWidget *parent) :
     ui->setupUi(this);
 
     ui->plot->xAxis->setRange(-180, 180);
+    ui->plot->setBackground(QColor(240, 240, 240));
 
     layoutRadioButtons = new QGridLayout(this);
     ui->groupBoxCylinders->setLayout(layoutRadioButtons);

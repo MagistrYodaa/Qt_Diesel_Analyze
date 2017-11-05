@@ -9,7 +9,7 @@
 #include "QCustomPlot//qcustomplot.h"
 #include "ModBus/include/ModBusUSB.h"
 #include "dataio/dataio.h"
-#include "Settings/settings.h"
+#include "Settings/settingsclass.h"
 
 namespace Ui {
 class WidgetTest;

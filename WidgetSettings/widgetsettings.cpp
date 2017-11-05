@@ -16,35 +16,44 @@ WidgetSettings::WidgetSettings(QWidget *parent) :
     ui->spinBoxCount->setMaximum(MAX_COUNT_ADC);
 
     TConfigUSBPort ConfigUSBPort;
-    getUsbSettings(ConfigUSBPort);
+    Settings settings;
+
+    settings.getUsbSettings(ConfigUSBPort);
 
     ui->lineEditPID->setText(QString("%1").arg(ConfigUSBPort.pid, 0 ,16).toUpper());
     ui->lineEditVID->setText(QString("%1").arg(ConfigUSBPort.vid, 0 ,16).toUpper());
     ui->spinBoxCount->setValue(ConfigUSBPort.adc_count);
     ui->spinBoxFreq->setValue(ConfigUSBPort.adc_freq);
     ui->spinBoxTimeout->setValue(ConfigUSBPort.timeOut);
-    ui->spinBoxTreshold->setValue(getTreshold());
-    ui->spinBoxDUP->setValue(getDUPChannelSettings());
+    ui->spinBoxTreshold->setValue(settings.getTreshold());
+    ui->spinBoxDUP->setValue(settings.getDupChannel());
 }
 
 void WidgetSettings::on_pushButtonAccept_clicked()
 {
-    QString datadir = "Settings";
-    if (!QDir(datadir).exists()){
-        QDir().mkdir(datadir);
-    }
-    QSettings settings((datadir.toStdString() + "\\settings.ini").c_str(), QSettings::IniFormat);
+    Settings settings;
     bool ok;
+
     auto PID = QString("0x" + ui->lineEditPID->text()).toInt(&ok, 16);
     auto VID = QString("0x" + ui->lineEditVID->text()).toInt(&ok, 16);
-    settings.setValue("PID", PID);
-    settings.setValue("VID", VID);
-    settings.setValue("timeout", ui->spinBoxTimeout->value());
-    settings.setValue("freq", ui->spinBoxFreq->value());
-    settings.setValue("count", ui->spinBoxCount->value());
-    settings.setValue("treshold",ui->spinBoxTreshold->value());
-    settings.setValue("dup", ui->spinBoxDUP->value());
+
+    settings.setPID(PID);
+    settings.setVID(VID);
+    settings.setTimeOut(ui->spinBoxTimeout->value());
+    settings.setFreq(ui->spinBoxFreq->value());
+    settings.setCount(ui->spinBoxCount->value());
+    settings.setTreshold(ui->spinBoxTreshold->value());
+    settings.setDupChannel(ui->spinBoxDUP->value());
     settings.sync();
+
+    QMessageBox msgBox(
+                QMessageBox::Question,
+                tr("Дизель адмирал"),
+                tr("Настройки успешно сохранены\n"),
+                QMessageBox::Ok);
+
+    msgBox.setButtonText(QMessageBox::Ok, tr("Ок"));
+    msgBox.exec();
 }
 
 void WidgetSettings::closeEvent(QCloseEvent *event)

@@ -7,10 +7,12 @@ WidgetTest::WidgetTest(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    ui->plot->setBackground(QColor(240, 240, 240));
     ui->plot->xAxis->setRange(0, 500);
     ui->plot->yAxis->setRange(-5, 5);
 
-    getCountVector(countVector);
+    Settings settings;
+    settings.getCountVector(countVector);
 
     ui->plot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectAxes | QCP::iSelectLegend | QCP::iSelectPlottables);
 

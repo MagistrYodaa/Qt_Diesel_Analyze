@@ -1,5 +1,5 @@
-#ifndef SETTINGS_H
-#define SETTINGS_H
+#ifndef SETTINGSCLASS_H
+#define SETTINGSCLASS_H
 
 #include <QSettings>
 #include <QVector>
@@ -20,24 +20,24 @@ private:
 public:
     Settings();
     QString getDUPChannelString();
-    double treshold() const;
-    void setTreshold(double treshold);
-    int dupChannel() const;
-    void setDupChannel(int dupChannel);
-    int PID() const;
-    void setPID(int PID);
-    int VID() const;
-    void setVID(int VID);
-    int timeOut() const;
-    void setTimeOut(int timeOut);
-    int freq() const;
-    void setFreq(int freq);
-    int count() const;
-    void setCount(int count);
+    double getTreshold() const;
+    void setTreshold(double getTreshold);
+    int getDupChannel() const;
+    void setDupChannel(int getDupChannel);
+    int getPID() const;
+    void setPID(int getPID);
+    int getVID() const;
+    void setVID(int getVID);
+    int getTimeOut() const;
+    void setTimeOut(int getTimeOut);
+    int getFreq() const;
+    void setFreq(int getFreq);
+    int getCount() const;
+    void setCount(int getCount);
     void sync();
-    void getCountVector(QVector<int> &countVector);
+    void getCountVector(QVector<double> &countVector);
     void getUsbSettings(TConfigUSBPort &configUSBPort);
     ~Settings();
 };
 
-#endif // SETTINGS_H
+#endif // SETTINGSCLASS_H

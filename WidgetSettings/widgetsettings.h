@@ -7,7 +7,7 @@
 #include <QCloseEvent>
 #include <QMessageBox>
 #include "ModBus/include/ModBusUSB.h"
-#include "Settings/settings.h"
+#include "Settings/settingsclass.h"
 
 #define ORGANIZATION_NAME "Garant"
 #define ORGANIZATION_DOMAIN "www.leningrad.com"

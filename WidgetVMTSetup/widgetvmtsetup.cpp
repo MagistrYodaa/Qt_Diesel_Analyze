@@ -7,6 +7,7 @@ WidgetVMTSetup::WidgetVMTSetup(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    ui->plot->setBackground(QColor(240, 240, 240));
     ui->plot->xAxis->setRange(-180, 180);
     ui->plot->yAxis->setRange(1, 1.5);
     ui->plot->yAxis->setLabel("Кг/см2");

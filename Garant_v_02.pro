@@ -41,7 +41,6 @@ SOURCES += main.cpp \
     WidgetMetering/widgetmetering.cpp \
     WidgetDieselType/widgetdieseltype.cpp \
     WidgetArchive/widgetarchive.cpp \
-    Settings/settings.cpp \
     dataio/dataio.cpp \
     ModBus/include/ModBusUSB.cpp \
     DieselType/dieseltype.cpp \
@@ -56,7 +55,6 @@ HEADERS  += WidgetArchive/widgetarchive.h \
     WidgetSettings/widgetsettings.h \
     WidgetVMTSetup/widgetvmtsetup.h \
     MainWindow/mainwindow.h \
-    Settings/settings.h \
     QCustomPlot/qcustomplot.h \
     dataio/dataio.h \
     DieselType/dieseltype.h \
